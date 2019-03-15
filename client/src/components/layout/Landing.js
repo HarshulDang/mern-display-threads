@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 class Landing extends Component {
 	render() {
@@ -15,7 +16,7 @@ class Landing extends Component {
 							Create a (minimal) full-stack app with user authentication via passport and JWT
 						</p>
 						<br />
-						<a style={{
+						<NavLink to="/register" style={{
 								width:"150px",
 								borderRadius:"3px",
 								letterSpacing:"1.5px"
@@ -23,8 +24,8 @@ class Landing extends Component {
 							className="btn btn-large waves-effect waves-light hoverable blue accent-3"
 						>
 							Register
-						</a>
-						<a
+						</NavLink>
+						<NavLink to="/login"
 							style={{
 								marginLeft: "2rem",
 								width:"150px",
@@ -34,7 +35,7 @@ class Landing extends Component {
 							className="btn btn-large waves-effect white hoverable black-text"
 						>
 							Log In
-						</a>
+						</NavLink>
 					</div>
 				</div>
 			</div>

@@ -1,8 +1,11 @@
 import React, { Component} from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+var querystring = require('querystring');
 
 class Register extends Component {
-	constructor(){;
+	constructor(){
 		super();
 		this.state = {
 			name: "",
@@ -11,6 +14,8 @@ class Register extends Component {
 			password2: "",
 			errors: {}
 		};
+		this.onClick = this.onClick.bind(this);
+		this.insertSignInData = this.insertSignInData.bind(this);
 	}
 
 	onChange = e => {
@@ -29,6 +34,23 @@ class Register extends Component {
 
 		console.log('newUser');
 	};
+
+	onClick(e) {
+      this.insertSignInData(this);
+	};
+
+	insertSignInData(e) {
+      axios.post('/register',
+        querystring.stringify({
+          name: e.state.name,
+          email: e.state.email,
+          password: e.state.password
+        }), {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        });
+    }
 
 	render() {
 		const { errors } = this.state;
@@ -91,7 +113,7 @@ class Register extends Component {
 								<label htmlFor="name">Confirm Password</label>
 							</div>
 							<div className="col s12" style={{ paddingLeft: "11.250" }}>
-								<button
+								<button onClick={this.onClick}
 								 	style={{
 								 		width: "150px",
 								 		borderRadius: "3px",
