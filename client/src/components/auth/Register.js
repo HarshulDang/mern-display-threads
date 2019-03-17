@@ -36,21 +36,40 @@ class Register extends Component {
 	};
 
 	onClick(e) {
-      this.insertSignInData(this);
+      this.insertSignInData(this)
+      		.then(res => {
+      			alert("Registration Successfully")
+      			localStorage.setItem('email', this.state.email)
+      			this.props.history.push('/activeThreads',{email: this.state.email})
+      		})
+      		.catch(err => {
+        		console.log("err",err) 
+        		alert('Email already exists');
+      		})
 	};
 
 	insertSignInData(e) {
-      axios.post('/register',
-        querystring.stringify({
-          name: e.state.name,
-          email: e.state.email,
-          password: e.state.password
-        }), {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
-        });
+		console.log(e.state.name,e.state.email,e.state.password)
+		return axios({
+				  method: 'post',
+				  url: 'http://localhost:5000/api/users/register',
+				  data: {
+				    	  name: e.state.name,
+				          email: e.state.email,
+				          password: e.state.password
+				  }
+				})
+      // axios.post('http://localhost:5000/api/users/register',{
+      //     name: e.state.name,
+      //     email: e.state.email,
+      //     password: e.state.password
+      //   })
+      // .then(res => console.log(res))
+      // .catch(err => console.log("err",err))
     }
+
+
+    
 
 	render() {
 		const { errors } = this.state;

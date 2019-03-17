@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+
+
 
 class Login extends Component {
   constructor() {
@@ -7,8 +10,10 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      errors: {}
+      errors: {},
     };
+    this.onClick = this.onClick.bind(this);
+    this.logInData = this.logInData.bind(this);
   }
 
 onChange = e => {
@@ -23,6 +28,33 @@ onSubmit = e => {
     };
     console.log(userData);
 };
+
+onClick() {
+  this.logInData(this)
+      .then(res => {
+        console.log(res.data.token)
+        localStorage.setItem('email', this.state.email)
+        this.props.history.push('/activeThreads', {email: this.state.email})
+      })
+      .catch(err => {
+        console.log("err",err) 
+        alert('Login Failed');
+      })
+      
+}
+
+
+logInData(e) {
+    console.log(e.state.email,e.state.password)
+    return axios({
+          method: 'post',
+          url: 'http://localhost:5000/api/users/login',
+          data: {
+                  email: e.state.email,
+                  password: e.state.password
+          }
+        })
+}
 
 render() {
 
@@ -66,7 +98,7 @@ return (
                 <label htmlFor="password">Password</label>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                <button
+                <button onClick={this.onClick}
                   style={{
                     width: "150px",
                     borderRadius: "3px",

@@ -7,6 +7,12 @@ const users = require("./routes/api/users");
 
 const app = express();
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 //Bodyparser middleware
 app.use(
 	bodyParser.urlencoded({
@@ -31,6 +37,7 @@ app.use(passport.initialize());
 
 //Passport config
 require("./config/passport")(passport);
+
 
 //Routes
 app.use("/api/users", users);
