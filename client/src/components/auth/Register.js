@@ -32,7 +32,7 @@ class Register extends Component {
 			password2: this.state.password2
 		};
 
-		console.log('newUser');
+		// console.log('newUser');
 	};
 
 	onClick(e) {
@@ -43,13 +43,13 @@ class Register extends Component {
       			this.props.history.push('/activeThreads',{email: this.state.email})
       		})
       		.catch(err => {
-        		console.log("err",err) 
+        		// console.log("err",err) 
         		alert('Email already exists');
       		})
 	};
 
 	insertSignInData(e) {
-		console.log(e.state.name,e.state.email,e.state.password)
+		// console.log(e.state.name,e.state.email,e.state.password)
 		return axios({
 				  method: 'post',
 				  url: 'https://displaythreads.herokuapp.com/api/users/register',
