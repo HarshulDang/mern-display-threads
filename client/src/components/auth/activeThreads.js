@@ -31,7 +31,7 @@ class ActiveThreads extends React.Component {
 
 
   getData(e){
-    axios.get('http://localhost:5000/api/users/getAll')
+    axios.get('https://displaythreads.herokuapp.com/api/users/getAll')
       .then(function(response) {
         console.log(response)
         e.setState({data: response.data});

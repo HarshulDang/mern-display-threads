@@ -52,7 +52,7 @@ export default class CreateNewThread extends React.Component {
 		console.log(e.state.title,e.state.description,e.state.tags,e.state.date)
 		axios({
 				  method: 'post',
-				  url: 'http://localhost:5000/api/users/insert',
+				  url: 'https://displaythreads.herokuapp.com/api/users/insert',
 				  data: {
 				    	  title: e.state.title,
 				          description: e.state.description,
