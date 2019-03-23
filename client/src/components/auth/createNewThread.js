@@ -41,15 +41,15 @@ export default class CreateNewThread extends React.Component {
 
     onClick(e) {
       this.insertThread(this);
-      console.log('Modal on click')
-      console.log(this.state.title,this.state.description,this.state.tags,this.state.date)
+      // console.log('Modal on click')
+      // console.log(this.state.title,this.state.description,this.state.tags,this.state.date)
       // this.props.onNewThreadCreate(this.state.title,this.state.description,this.state.tags,this.state.date);
 
 
 	};
 
 	insertThread(e) {
-		console.log(e.state.title,e.state.description,e.state.tags,e.state.date)
+		// console.log(e.state.title,e.state.description,e.state.tags,e.state.date)
 		axios({
 				  method: 'post',
 				  url: 'https://displaythreads.herokuapp.com/api/users/insert',
@@ -63,7 +63,7 @@ export default class CreateNewThread extends React.Component {
 				  }
 				})
 			.then(res => {
-				console.log(res);
+				// console.log(res);
 				e.setState({ messageFromServer: res.data.message});
 				this.props.onNewThreadCreate(this.state.title,this.state.description,this.state.tags,this.state.date);
 			})

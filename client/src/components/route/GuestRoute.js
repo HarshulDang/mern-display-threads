@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 
 const GuestRoute = ({ isAuthenticated, component: Component, ...rest }) => {
 	let isUserAuthenticated = false;
-    console.log(localStorage.getItem('email'))
+    // console.log(localStorage.getItem('email'))
     if(localStorage.getItem('email')){
         isUserAuthenticated = true;
     }

@@ -26,18 +26,18 @@ onSubmit = e => {
       email: this.state.email,
       password: this.state.password
     };
-    console.log(userData);
+    // console.log(userData);
 };
 
 onClick() {
   this.logInData(this)
       .then(res => {
-        console.log(res.data.token)
+        // console.log(res.data.token)
         localStorage.setItem('email', this.state.email)
         this.props.history.push('/activeThreads', {email: this.state.email})
       })
       .catch(err => {
-        console.log("err",err) 
+        //console.log("err",err) 
         alert('Login Failed');
       })
       
@@ -45,7 +45,7 @@ onClick() {
 
 
 logInData(e) {
-    console.log(e.state.email,e.state.password)
+    // console.log(e.state.email,e.state.password)
     return axios({
           method: 'post',
           url: 'https://displaythreads.herokuapp.com/api/users/login',

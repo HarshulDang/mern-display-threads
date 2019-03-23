@@ -52,7 +52,7 @@ class Register extends Component {
 		console.log(e.state.name,e.state.email,e.state.password)
 		return axios({
 				  method: 'post',
-				  url: 'http://displaythreads.herokuapp.com/api/users/register',
+				  url: 'https://displaythreads.herokuapp.com/api/users/register',
 				  data: {
 				    	  name: e.state.name,
 				          email: e.state.email,

@@ -2,10 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require("passport");
+const path = require("path")
 
 const users = require("./routes/api/users");
 
 const app = express();
+console.log(path.join(__dirname,'client/public'));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -41,6 +43,8 @@ require("./config/passport")(passport);
 
 //Routes
 app.use("/api/users", users);
+app.use(express.static(path.join(__dirname,'client/public')));
+
 
 var port = process.env.PORT || 5000;
 

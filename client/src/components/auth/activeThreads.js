@@ -17,8 +17,8 @@ class ActiveThreads extends React.Component {
   }
 
   handleOnThreadCreate = (title,description,tags,date) => {
-    console.log('parent triggered');
-    console.log(title,description,tags,date);
+    // console.log('parent triggered');
+    // console.log(title,description,tags,date);
     this.getData(this);
   } 
 
@@ -33,7 +33,7 @@ class ActiveThreads extends React.Component {
   getData(e){
     axios.get('https://displaythreads.herokuapp.com/api/users/getAll')
       .then(function(response) {
-        console.log(response)
+        // console.log(response)
         e.setState({data: response.data});
         
     });
